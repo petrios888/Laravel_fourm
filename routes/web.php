@@ -15,34 +15,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-Route::get('/', function () {
-    return 'show all posts';
-});
+Route::get('/', 'PostController@index');
 
 
 
-Route::get('/about', function () {
-    return 'God is Good all the Time';
-});
+Route::get('/posts/create', 'PostController@create');
+
+Route::post('/posts', 'PostController@store');
 
 
-Route::get('/post/create', function () {
-    return "create page";
-});
+Route::get('/posts/{title}', 'PostController@show');
 
-Route::post('/post', function () {
-    return "store data";
-});
 
-Route::get('/post/{title}', function () {
-    return "show single post";
-});
-Route::get('/post/{title}/edit', function ($title) {
-    return "edit post";
-});
-Route::put('/post/{title}', function ($title) {
-    return "save updated  post";
-});
-Route::delete('/post/{title}/edit', function ($title) {
-    return "delete post";
-});
+Route::get('/posts/{title}/edit', 'PostController@edit');
+
+
+Route::put('/posts/{title}', 'PostController@update');
+
+
+Route::delete('/posts/{title}/edit', 'PostController@destroy');
