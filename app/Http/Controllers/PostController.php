@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
       $user_name = "Cephas";
-      $posts = [1,2,3,4,5,6,7,8];
+      $posts = Post::all();
         return view('posts/index', compact('posts'));
     }
 
@@ -43,8 +43,10 @@ class PostController extends Controller
       $content = $request->content;
       $category_id = 1;
 
-      DB::insert('insert into posts (title, content, category_id ) values (?, ?, ?)', [$title, $content, $category_id]);
+      $post = Post::create(["title" => $title, "content"=>$content, "category_id"=>$category_id]);
+
         return $request->all();
+
     }
 
     /**
@@ -53,10 +55,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post, $title)
+    public function show(Post $post, $id)
     {
-
-        return view('posts/show');
+        $post = Post::where('id', $id)->first();
+        return view('posts/show', compact('post'));
     }
 
     /**

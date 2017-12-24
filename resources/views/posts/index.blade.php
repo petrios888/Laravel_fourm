@@ -13,9 +13,9 @@
 @section('content')
   @foreach ($posts as $post)
   <a href="/posts/title">
-    <h1> Title of Post </h1>
+    <h1> {{$post->title}} </h1>
     </a>
-<p> Title of Post </p>
+<p> {{$post->content}} </p>
 <hr>
 
 
