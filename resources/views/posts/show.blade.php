@@ -8,6 +8,6 @@
 @section('content')
     <h1> {{ $post->title}} </h1>
     </a>
-  <p> Title of Post </p>
+  <p> {{ $post->content }} </p>
   <hr>
 @endsection

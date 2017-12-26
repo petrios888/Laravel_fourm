@@ -2,7 +2,7 @@
 
 
 @section('title')
-  Home page
+  Home page Right Here
 @endsection
 
 @section('sidebar')

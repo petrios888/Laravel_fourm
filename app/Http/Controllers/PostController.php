@@ -67,9 +67,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post,$title)
+    public function edit(Post $post,$id)
     {
-        return view('posts/edit');
+      $post = Post::where('id', $id)->first();
+      return view('posts/edit', compact('post'));
     }
 
     /**
@@ -79,8 +80,15 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post,$title)
+    public function update(Request $request, Post $post,$id)
     {
+      Post::where('id', $id)
+          ->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => 1
+
+          ]);
         return 'update single data';
     }
 
@@ -90,8 +98,9 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post,$title)
+    public function destroy(Post $post,$id)
     {
+        Post::destroy($id);
         return 'delete data';
     }
 }
